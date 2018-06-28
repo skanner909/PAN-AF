@@ -3,13 +3,8 @@
 #check to make sure Python is installed
 python --version
 
-#install pip
-sudo apt-get update -y
-sudo apt-get install python-pip -y
-
-#use pip to install requests
-
-pip install requests
+#install the python requests module
+sudo apt-get install python-requests -y
 
 #install sqlite3
 sudo apt-get install sqlite3 -y
