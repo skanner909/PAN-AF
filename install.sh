@@ -11,7 +11,7 @@ sudo apt-get install sqlite3 -y
 
 #set some necessary permissions
 cd /home
-sudo chmod 777 pi
+sudo chmod 755 pi
 cd pi
 mkdir pan_dhcp
 chmod 777 pan_dhcp
