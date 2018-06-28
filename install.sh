@@ -34,21 +34,21 @@ sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/pan_dhcp_cron
 #install apache2 and configure it to allow cgi
 sudo apt-get install apache2 -y
 sudo a2enmod cgid
-sudo systemctl apache2 restart
+sudo service apache2 restart
 
 #copy cgi scripts into the cgi directory
 cd /usr/lib/cgi-bin
 sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/index.cgi
-sudo chmod 777 index.cgi
+sudo chmod 755 index.cgi
 sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/keygen.cgi
-sudo chmod 777 keygen.cgi
+sudo chmod 755 keygen.cgi
 
 #copy default web page
 cd /var/www/html
 sudo rm index.html
 sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/index.html
-sudo chmod 777 index.html
+sudo chmod 755 index.html
 sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/dus.css
-sudo chmod 777 dus.css
+sudo chmod 755 dus.css
 sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/logo.svg
-sudo chmod 777 logo.svg
+sudo chmod 755 logo.svg
