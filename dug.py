@@ -10,7 +10,6 @@ import StringIO
 fwhost = fw_creds.fwhost
 fwkey = fw_creds.fwkey
 dbfile = "/home/pi/dug/devices.sql"
-xmlfile = StringIO.StringIO()
 rsafile = "/var/www/html/rsa.csv"
 
 def getDhcp(fwhost, fwkey):
@@ -130,18 +129,31 @@ def rsaWrite(hostdata):
   file.write(rsacsv)
   file.close
 
+def fwWrite(fwxml):
+  xmlfile = StringIO.StringIO()
+  xmlfile.write(fwxml)
+  files = {xmlfile: xmlfile.getvalue()}
+  values = {'type': 'user-id', 'key': fwkey}
+  palocall = 'https://' + fwhost + '/api'
+  r = requests.post(palocall, data=values, files=files, verify=False)
+  rtree = ET.fromstring(r.text)
+  print rtree.get('status')
+
+
+#Get DHCP Leases from the firewall
 leases = getDhcp(fwhost, fwkey)
+
+#Add statically-assigned IP address data from the ARP table
 arps = enrichArp(leases)
+
+#Enrich the entries with data from the DUG database
 hostdata = enrichDatabase(arps)
 
+#Write out the csv data for RSA ingestion
 rsaWrite(hostdata)
 
+#Format the data into an XML update for the firewall
 fwxml = fwFormat(hostdata)
 
-xmlfile.write(fwxml)
-files = {xmlfile: xmlfile.getvalue()}
-values = {'type': 'user-id', 'key': fwkey}
-palocall = 'https://' + fwhost + '/api'
-r = requests.post(palocall, data=values, files=files, verify=False)
-rtree = ET.fromstring(r.text)
-print rtree.get('status')
+#Write the data to the firewall
+fwWrite(fwxml)
