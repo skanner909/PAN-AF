@@ -79,3 +79,9 @@ sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/logo.svg
 sudo chown www-data logo.svg
 sudo chgrp www-data logo.svg
 sudo chmod 755 logo.svg
+
+#create the file to hold the distinct list of MAC addresses seen on the firewall
+sudo touch macs.txt
+sudo chown www-data macs.txt
+sudo chgrp www-data macs.txt
+sudo chmod 755 macs.txt
