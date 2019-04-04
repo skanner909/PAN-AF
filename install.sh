@@ -17,16 +17,19 @@ sudo chgrp www-data dug
 cd /var/dug
 
 #create the devices database
-echo 'CREATE TABLE DevicesDynamic (DeviceName "TEXT", DeviceMac "TEXT", Groups "Text");' > create.sql
-sqlite3 devices.sql < create.sql
-rm create.sql
-chmod 777 devices.sql
+sudo echo 'CREATE TABLE DevicesDynamic (DeviceName "TEXT", DeviceMac "TEXT", Groups "Text");' > create.sql
+sudo sqlite3 devices.sql < create.sql
+sudo rm create.sql
+sudo chmod 777 devices.sql
 
 #install the code that updates the firewall
-wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/dug.py
+sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/dug.py
 sudo chusr www-data dug.py
 sudo chgrp www-data dug.py
 sudo chmod 755 dug.py
+
+#Install supporting usermap and groupmap files
+
 
 #update cron to execute the script every minute
 cd /etc/cron.d
