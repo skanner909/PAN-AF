@@ -18,7 +18,7 @@ sudo chgrp www-data dug
 cd /var/dug
 
 #create the devices database
-sudo wget -q https://github.com/p0lr/PAN_DUG/blob/master/devices.sql?raw=true
+sudo wget -q 'https://github.com/p0lr/PAN_DUG/blob/master/devices.sql?raw=true'
 sudo chown www-data devices.sql
 sudo chgrp www-data devices.sql
 sudo chmod 755 devices.sql
