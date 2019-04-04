@@ -9,7 +9,7 @@ sudo apt-get install python-requests -y
 #install sqlite3
 sudo apt-get install sqlite3 -y
 
-#set some necessary permissions
+#create the directory for the primary dug code to live
 cd /var
 sudo mkdir dug
 sudo chown www-data dug
@@ -18,7 +18,11 @@ sudo chgrp www-data dug
 cd /var/dug
 
 #create the devices database
-sudo wget -q 'https://github.com/p0lr/PAN_DUG/blob/master/devices.sql?raw=true'
+sudo touch create.sql
+sudo chmod 777 create.sql
+sudo echo 'CREATE TABLE DevicesDynamic (DeviceName "TEXT", DeviceMac "TEXT", Groups "Text");' > create.sql
+sudo sqlite3 devices.sql < create.sql
+sudo rm create.sql
 sudo chown www-data devices.sql
 sudo chgrp www-data devices.sql
 sudo chmod 755 devices.sql
