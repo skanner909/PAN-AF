@@ -18,31 +18,31 @@ sudo chgrp www-data dug
 cd /var/dug
 
 #create the devices database
-wget https://github.com/p0lr/PAN_DUG/blob/master/devices.sql?raw=true
+sudo wget -q https://github.com/p0lr/PAN_DUG/blob/master/devices.sql?raw=true
 sudo chown www-data devices.sql
 sudo chgrp www-data devices.sql
 sudo chmod 755 devices.sql
 
 #install the code that updates the firewall
-sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/dug.py
+sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/dug.py
 sudo chown www-data dug.py
 sudo chgrp www-data dug.py
 sudo chmod 755 dug.py
 
 #Install supporting usermap and groupmap files
-sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/groupmap.py
+sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/groupmap.py
 sudo chown www-data groupmap.py
 sudo chgrp www-data groupmap.py
 sudo chmod 755 groupmap.py
 
-sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/usermap.py
+sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/usermap.py
 sudo chown www-data usermap.py
 sudo chgrp www-data usermap.py
 sudo chmod 755 usermap.py
 
 #update cron to execute the script every minute
 cd /etc/cron.d
-sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/dug.cron
+sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/dug.cron
 
 #install apache2 and configure it to allow cgi
 sudo apt-get install apache2 -y
@@ -51,11 +51,11 @@ sudo service apache2 restart
 
 #copy cgi scripts into the cgi directory
 cd /usr/lib/cgi-bin
-sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/index.cgi
+sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/index.cgi
 sudo chown www-data index.cgi
 sudi chgrp www-data index.cgi
 sudo chmod 755 index.cgi
-sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/keygen.cgi
+sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/keygen.cgi
 sudo chown www-data keygen.cgi
 sudo chgrp www-data keygen.cgi
 sudo chmod 755 keygen.cgi
@@ -63,15 +63,15 @@ sudo chmod 755 keygen.cgi
 #copy default web page
 cd /var/www/html
 sudo rm index.html
-sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/index.html
+sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/index.html
 sudo chown www-data index.html
 sudo chgrp www-data index.html
 sudo chmod 755 index.html
-sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/dus.css
+sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/dus.css
 sudo chown www-data dus.css
 sudo chgrp www-data dus.css
 sudo chmod 755 dus.css
-sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/logo.svg
+sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/logo.svg
 sudo chown www-data logo.svg
 sudo chgrp www-data logo.svg
 sudo chmod 755 logo.svg
