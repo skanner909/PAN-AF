@@ -57,7 +57,7 @@ sudo service apache2 restart
 cd /usr/lib/cgi-bin
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/index.cgi
 sudo chown www-data index.cgi
-sudi chgrp www-data index.cgi
+sudo chgrp www-data index.cgi
 sudo chmod 755 index.cgi
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/keygen.cgi
 sudo chown www-data keygen.cgi
