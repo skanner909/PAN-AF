@@ -29,7 +29,10 @@ sudo chgrp www-data dug.py
 sudo chmod 755 dug.py
 
 #Install supporting usermap and groupmap files
-
+sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/groupmap.py
+sudo chusr www-data groupmap.py
+sudo chgrp www-data groupmap.py
+sudo chmod 755 groupmap.py
 
 #update cron to execute the script every minute
 cd /etc/cron.d
