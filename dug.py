@@ -9,8 +9,9 @@ import StringIO
 
 fwhost = fw_creds.fwhost
 fwkey = fw_creds.fwkey
-dbfile = "/home/pi/dug/devices.sql"
+dbfile = "/var/dug/devices.sql"
 rsafile = "/var/www/html/rsa.csv"
+macfile = "/var/www/html/macs.txt"
 
 def getDhcp(fwhost, fwkey):
 
@@ -129,6 +130,18 @@ def rsaWrite(hostdata):
   file.write(rsacsv)
   file.close
 
+def macWrite(hostdata):
+  file = open(macfile, "r+")
+  readmacs = file.read().split("\n")
+
+  fwmacs = []
+  for entry in hostdata:
+    fwmacs.append(entry['mac'])
+
+  for mac in fwmacs:
+    if mac not in readmacs:
+      file.write("%s\n" % (mac, ))
+
 def fwWrite(fwxml):
   xmlfile = StringIO.StringIO()
   xmlfile.write(fwxml)
@@ -151,6 +164,9 @@ hostdata = enrichDatabase(arps)
 
 #Write out the csv data for RSA ingestion
 rsaWrite(hostdata)
+
+#Write new unique mac addresses to the mac list
+macWrite(hostdata)
 
 #Format the data into an XML update for the firewall
 fwxml = fwFormat(hostdata)
