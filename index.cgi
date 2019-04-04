@@ -4,7 +4,7 @@ import cgi
 import cgitb; cgitb.enable(format='text')  # for troubleshooting
 import sqlite3
 
-dbfile = "/home/pi/pan_dhcp/devices.sql"
+dbfile = "/var/dug/devices.sql"
 
 print "Content-type: text/html"
 print
