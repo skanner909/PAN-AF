@@ -41,7 +41,7 @@ sudo chmod 755 usermap.py
 
 #update cron to execute the script every minute
 cd /etc/cron.d
-sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/pan_dhcp_cron
+sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/dug.cron
 
 #install apache2 and configure it to allow cgi
 sudo apt-get install apache2 -y
