@@ -7,7 +7,7 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 import xml.etree.ElementTree as ET
 
-fwcredsfile = "/home/pi/pan_dhcp/fw_creds.py"
+fwcredsfile = "/var/dug/fw_creds.py"
 
 print "Content-type: text/html"
 print
