@@ -34,6 +34,11 @@ sudo chusr www-data groupmap.py
 sudo chgrp www-data groupmap.py
 sudo chmod 755 groupmap.py
 
+sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/usermap.py
+sudo chusr www-data usermap.py
+sudo chgrp www-data usermap.py
+sudo chmod 755 usermap.py
+
 #update cron to execute the script every minute
 cd /etc/cron.d
 sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/pan_dhcp_cron
