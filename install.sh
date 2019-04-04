@@ -18,6 +18,7 @@ cd /var/dug
 
 #create the devices database
 sudo echo 'CREATE TABLE DevicesDynamic (DeviceName "TEXT", DeviceMac "TEXT", Groups "Text");' > create.sql
+sudo chmod 777 create.sql
 sudo sqlite3 devices.sql < create.sql
 sudo rm create.sql
 sudo chmod 777 devices.sql
