@@ -14,14 +14,14 @@ cd /var
 sudo mkdir dug
 sudo chown www-data dug
 sudo chgrp www-data dug
+
 cd /var/dug
 
 #create the devices database
-sudo echo 'CREATE TABLE DevicesDynamic (DeviceName "TEXT", DeviceMac "TEXT", Groups "Text");' > create.sql
-sudo chmod 777 create.sql
-sudo sqlite3 devices.sql < create.sql
-sudo rm create.sql
-sudo chmod 777 devices.sql
+wget https://github.com/p0lr/PAN_DUG/blob/master/devices.sql?raw=true
+sudo chown www-data devices.sql
+sudo chgrp www-data devices.sql
+sudo chmod 755 devices.sql
 
 #install the code that updates the firewall
 sudo wget https://raw.githubusercontent.com/p0lr/PAN_DUG/master/dug.py
