@@ -175,6 +175,7 @@ li a:hover {
 <ul>
   <li><a href="/cgi-bin/">Manage Devices</a></li>
   <li><a href="/cgi-bin/keygen.cgi">Manage Firewall</a></li>
+  <li><a href="/cgi-bin/vlan.cgi">Add a VLAN</a></li>
 </ul>
 """
 
