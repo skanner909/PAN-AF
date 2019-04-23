@@ -63,6 +63,10 @@ sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/keygen.cgi
 sudo chown www-data keygen.cgi
 sudo chgrp www-data keygen.cgi
 sudo chmod 755 keygen.cgi
+sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/vlan.cgi
+sudo chown www-data vlan.cgi
+sudo chgrp www-data vlan.cgi
+sudo chmod 755 vlan.cgi
 
 #copy default web page
 cd /var/www/html
