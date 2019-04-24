@@ -10,6 +10,12 @@ import fw_creds
 fwhost = fw_creds.fwhost
 fwkey = fw_creds.fwkey
 
+#These variables will change for each environment:
+latitude = "39.938"
+longitude = "-105.047"
+natrule = "Outbound NAT"
+securityrule = "Outbound - Unknown Device"
+
 def getInterfaces(fwhost, fwkey):
   output = []
   values = {'type': 'op', 'cmd': '<show><interface>all</interface></show>', 'key': fwkey}
@@ -23,8 +29,7 @@ def getInterfaces(fwhost, fwkey):
       output.append(info)
   return output
 
-def createSubInterface(fwhost, fwkey, vlaninterface, vlannumber, vlannetwork, vlanzoneregion, vlandescription):
-
+def createSubInterface(fwhost, fwkey, vlaninterface, vlannumber, vlannetwork, vlandescription):
   #Create the sub-interface
   print "Creating the sub-interface: "
   type = "config"
@@ -33,14 +38,10 @@ def createSubInterface(fwhost, fwkey, vlaninterface, vlannumber, vlannetwork, vl
   element = '<comment>%s</comment>' % (vlandescription, )
   element += '<tag>%s</tag>' % (vlannumber, )
   element += "<ip><entry name='%s.1/24'/></ip>" % (vlannetwork, )
+  response = fwSet(fwhost, fwkey, type, action, xpath, element)
+  print "%s<br>" % (response, )
 
-  values = {'type': type, 'action': action, 'xpath': xpath, 'element': element, 'key': fwkey}
-  palocall = 'https://%s/api/' % (fwhost)
-  r = requests.post(palocall, data=values, verify=False)
-  tree = ET.fromstring(r.text)
-  response = tree.find('msg')
-  print "%s<br>" % (response.text, )
-
+def createZone(fwhost, fwkey, vlanzoneregion, vlaninterface, vlannumber):
   #Create the zone, enable user-id, and add the sub-interface
   print "Creating the zone, enable user-id in the zone, and adding the sub-interface to the zone: "
   type = "config"
@@ -48,28 +49,20 @@ def createSubInterface(fwhost, fwkey, vlaninterface, vlannumber, vlannetwork, vl
   xpath = "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/zone"
   element = '<entry name="%s"><network><layer3><member>%s.%s</member></layer3></network>' % (vlanzoneregion, vlaninterface, vlannumber)
   element += '<enable-user-identification>yes</enable-user-identification></entry>'
+  response = fwSet(fwhost, fwkey, type, action, xpath, element)
+  print "%s<br>" % (response, )
 
-  values = {'type': type, 'action': action, 'xpath': xpath, 'element': element, 'key': fwkey}
-  palocall = 'https://%s/api/' % (fwhost)
-  r = requests.post(palocall, data=values, verify=False)
-  tree = ET.fromstring(r.text)
-  response = tree.find('msg')
-  print "%s<br>" % (response.text, )
-
+def addRouter(fwhost, fwkey, vlaninterface, vlannumber):
   #Add the sub-interface to the default router
   print "Adding the sub-interface to the default router: "
   type = "config"
   action = "set"
   xpath = "/config/devices/entry[@name='localhost.localdomain']/network/virtual-router/entry[@name='default']/interface"
-  element = "<member>%s.%s</member>" % (vlaninterface, vlannumber) 
+  element = "<member>%s.%s</member>" % (vlaninterface, vlannumber)
+  response = fwSet(fwhost, fwkey, type, action, xpath, element)
+  print "%s<br>" % (response, )
 
-  values = {'type': type, 'action': action, 'xpath': xpath, 'element': element, 'key': fwkey}
-  palocall = 'https://%s/api/' % (fwhost)
-  r = requests.post(palocall, data=values, verify=False)
-  tree = ET.fromstring(r.text)
-  response = tree.find('msg')
-  print "%s<br>" % (response.text, )
-
+def createDhcp(fwhost, fwkey, vlaninterface, vlannumber, vlannetwork):
   #Configure DHCP
   print "Conguring DHCP: "
   type = "config"
@@ -78,14 +71,10 @@ def createSubInterface(fwhost, fwkey, vlaninterface, vlannumber, vlannetwork, vl
   element = "<option><dns><primary>208.67.222.222</primary><secondary>208.67.220.220</secondary></dns>"
   element += "<lease><timeout>120</timeout></lease><gateway>%s.1</gateway><subnet-mask>255.255.255.0</subnet-mask>" % (vlannetwork, )
   element += "</option><ip-pool><member>%s.10-%s.250</member></ip-pool><mode>enabled</mode>" % (vlannetwork, vlannetwork)
+  response = fwSet(fwhost, fwkey, type, action, xpath, element)
+  print "%s<br>" % (response, )
 
-  values = {'type': type, 'action': action, 'xpath': xpath, 'element': element, 'key': fwkey}
-  palocall = 'https://%s/api/' % (fwhost)
-  r = requests.post(palocall, data=values, verify=False)
-  tree = ET.fromstring(r.text)
-  response = tree.find('msg')
-  print "%s<br>" % (response.text, )
-
+def createRegion(fwhost, fwkey, vlanzoneregion, vlannetwork, latitude, longitude):
   #Add a region
   print "Adding a region: "
   type = "config"
@@ -93,14 +82,38 @@ def createSubInterface(fwhost, fwkey, vlaninterface, vlannumber, vlannetwork, vl
   xpath = "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/region"
   element = '<entry name="%s">' % (vlanzoneregion, )
   element += "<address><member>%s.0/24</member></address>" % (vlannetwork, )
-  element += "<geo-location><latitude>39.938</latitude><longitude>-105.047</longitude></geo-location></entry>"
+  element += "<geo-location><latitude>%s</latitude><longitude>%s</longitude></geo-location></entry>" % (latitude, longitude)
+  response = fwSet(fwhost, fwkey, type, action, xpath, element)
+  print "%s<br>" % (response, )
 
+def addSecurity(fwhost, fwkey, securityrule, vlanzoneregion):
+  #Add to outbound security policy
+  print "Adding the source zone to the outbound security policy: "
+  type = "config"
+  action = "set"
+  xpath = "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/security/rules/entry[@name='%s']/from" % (securityrule, )
+  element = "<member>%s</member>" % (vlanzoneregion, )
+  response = fwSet(fwhost, fwkey, type, action, xpath, element)
+  print "%s<br>" % (response, )
+
+def addNat(fwhost, fwkey, natrule, vlanzoneregion):
+  #Add to outbound NAT policy
+  print "Adding the source zone to the outbound NAT policy: "
+  type = "config"
+  action = "set"
+  xpath = "/config/devices/entry[@name='localhost.localdomain']/vsys/entry[@name='vsys1']/rulebase/nat/rules/entry[@name='%s']/from" % (natrule, )
+  element = "<member>%s</member>" % (vlanzoneregion, )
+  response = fwSet(fwhost, fwkey, type, action, xpath, element)
+  print "%s<br>" % (response, )
+
+def fwSet(fwhost, fwkey, type, action, xpath, element):
+  #This actually pushes the config change to the firewall after all of the values are set - it needs better error handling...
   values = {'type': type, 'action': action, 'xpath': xpath, 'element': element, 'key': fwkey}
   palocall = 'https://%s/api/' % (fwhost)
   r = requests.post(palocall, data=values, verify=False)
   tree = ET.fromstring(r.text)
   response = tree.find('msg')
-  print "%s<br>" % (response.text, )
+  return response.text
 
 print "Content-type: text/html"
 print
@@ -237,7 +250,13 @@ vlannetwork = form.getvalue("vlannetwork")
 
 if (vlaninterface and vlannumber and vlanzoneregion and vlandescription and vlannetwork):
   print '<div class="response">'
-  createSubInterface(fwhost, fwkey, vlaninterface, vlannumber, vlannetwork, vlanzoneregion, vlandescription)
+  createSubInterface(fwhost, fwkey, vlaninterface, vlannumber, vlannetwork, vlandescription)
+  createZone(fwhost, fwkey, vlanzoneregion, vlaninterface, vlannumber)
+  addRouter(fwhost, fwkey, vlaninterface, vlannumber)
+  createDhcp(fwhost, fwkey, vlaninterface, vlannumber, vlannetwork)
+  createRegion(fwhost, fwkey, vlanzoneregion, vlannetwork, latitude, longitude)
+  addSecurity(fwhost, fwkey, securityrule, vlanzoneregion)
+  addNat(fwhost, fwkey, natrule, vlanzoneregion)
   print "</div>"
 
 
