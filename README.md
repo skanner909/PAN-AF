@@ -5,14 +5,15 @@ This package reads MAC address info from the both the firewall DHCP lease data a
 
 To install, issue the following commands:
 
-wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/install.sh
-chmod +x install.sh
-./install.sh
+1. wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/install.sh
+2. chmod +x install.sh
+3. ./install.sh
 
 To use:
 
-Browse to http://(ip)
-Click on th Palo Alto Networks logo
-Click on "Manage Firewall" in the navigation menu
-Enter the firewall IP address or hostname, username, and password for an account that has the proper permissions
+1. Browse to http://(ip)
+2. Click on th Palo Alto Networks logo
+3. Click on "Manage Firewall" in the navigation menu
+4. Enter the firewall IP address or hostname, username, and password for an account that has the proper permissions
+
 That's it!
