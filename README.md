@@ -30,5 +30,5 @@ Add your devices
 ```
 
 ### That's it!
--The firewall logs will now show your IP addresses with the appropriate names.
--If you registered any devices in groups, the group names will automatically appear in source and destination drop-downs in the firewall management interface.
+- The firewall logs will now show your IP addresses with the appropriate names.
+- If you registered any devices in groups, the group names will automatically appear in source and destination drop-downs in the firewall management interface.
