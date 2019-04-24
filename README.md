@@ -32,3 +32,13 @@ Add your devices
 ### That's it!
 - The firewall logs will now show your IP addresses with the appropriate names.
 - If you registered any devices in groups, the group names will automatically appear in source and destination drop-downs in the firewall management interface.
+
+### BONUS
+There is also a demonstration of using the API to create subinterfaces on layer 3 network interfaces including:
+- Creating the subinterface and IP addressing
+- Creating a new zone for the interface
+- Adding the interface to the default router
+- Configuring DHCP on the interface and adding an IP pool with the appropriate options set
+- Creating a new region for the network so all of those fancy reports and ACC dashboards have proper context
+- Adding the new zone to the outbound security policy
+- Adding the new zone to the outbound NAT policy
