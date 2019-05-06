@@ -67,6 +67,14 @@ sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/vlan.cgi
 sudo chown www-data vlan.cgi
 sudo chgrp www-data vlan.cgi
 sudo chmod 755 vlan.cgi
+sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/usermap.cgi
+sudo chown www-data usermap.cgi
+sudo chgrp www-data kusermap.cgi
+sudo chmod 755 usermap.cgi
+sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/groupmap.cgi
+sudo chown www-data groupmap.cgi
+sudo chgrp www-data groupmap.cgi
+sudo chmod 755 group.cgi
 
 #copy default web page
 cd /var/www/html
