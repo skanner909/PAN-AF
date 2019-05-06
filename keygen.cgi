@@ -108,6 +108,13 @@ li a:hover {
     cursor: pointer;
 }
 
+.response {
+    position: absolute;
+    top: 125px;
+    left: 175px;
+    font:normal 14px "Nimbus Sans Cond", tahoma, helvetica, arial, sans-serif;
+}
+
 </style>
 </head>
 <body>
@@ -148,7 +155,14 @@ if (fwip and fwusername and fwpassword):
     file.write(line)
     file.close()
 
-print """
+    print '<div class="response">'
+    print "IP: %s<br>\n" % (fwip, )
+    print "Key: %s<br>\n" % (fwkey, )
+    print "<br>\n"
+    print "Successfully written to the credential store."
+
+else:
+  print """
 <div class="form1">
   <form method="post" action="/cgi-bin/keygen.cgi">
     <label>Firewall IP Address or Hostname</label><br>
@@ -162,4 +176,4 @@ print """
 </div>
 </body>
 </html>
-"""
+  """
