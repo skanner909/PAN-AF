@@ -6,6 +6,7 @@ import xml.etree.ElementTree as ET
 import fw_creds
 import sqlite3
 import StringIO
+import datetime
 
 fwhost = fw_creds.fwhost
 fwkey = fw_creds.fwkey
@@ -150,7 +151,7 @@ def fwWrite(fwxml):
   palocall = 'https://' + fwhost + '/api'
   r = requests.post(palocall, data=values, files=files, verify=False)
   rtree = ET.fromstring(r.text)
-  print rtree.get('status')
+  return rtree.get('status')
 
 
 #Get DHCP Leases from the firewall
@@ -172,4 +173,8 @@ macWrite(hostdata)
 fwxml = fwFormat(hostdata)
 
 #Write the data to the firewall
-fwWrite(fwxml)
+stat = fwWrite(fwxml)
+
+log = open("/var/dug/dug.log", "a")
+log.write(str(datetime.datetime.now()) + ": " + stat + "\n")
+log.close
