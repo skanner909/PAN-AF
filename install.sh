@@ -56,41 +56,24 @@ sudo service apache2 restart
 #copy cgi scripts into the cgi directory
 cd /usr/lib/cgi-bin
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/index.cgi
-sudo chown www-data index.cgi
-sudo chgrp www-data index.cgi
-sudo chmod 755 index.cgi
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/keygen.cgi
-sudo chown www-data keygen.cgi
-sudo chgrp www-data keygen.cgi
-sudo chmod 755 keygen.cgi
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/vlan.cgi
-sudo chown www-data vlan.cgi
-sudo chgrp www-data vlan.cgi
-sudo chmod 755 vlan.cgi
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/usermap.cgi
-sudo chown www-data usermap.cgi
-sudo chgrp www-data kusermap.cgi
-sudo chmod 755 usermap.cgi
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/groupmap.cgi
-sudo chown www-data groupmap.cgi
-sudo chgrp www-data groupmap.cgi
-sudo chmod 755 group.cgi
+sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_BUG/master/menu.html
+sudo chown www-data *.*
+sudo chgrp www-data *.*
+sudo chmod 755 *.*
 
 #copy default web page
 cd /var/www/html
 sudo rm index.html
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/index.html
-sudo chown www-data index.html
-sudo chgrp www-data index.html
-sudo chmod 755 index.html
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/dus.css
-sudo chown www-data dus.css
-sudo chgrp www-data dus.css
-sudo chmod 755 dus.css
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/logo.svg
-sudo chown www-data logo.svg
-sudo chgrp www-data logo.svg
-sudo chmod 755 logo.svg
+sudo chown www-data *.*
+sudo chgrp www-data *.*
+sudo chmod 755 *.*
 
 #create the file to hold the distinct list of MAC addresses seen on the firewall
 sudo touch macs.txt
