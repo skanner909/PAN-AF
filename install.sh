@@ -33,17 +33,6 @@ sudo chown www-data dug.py
 sudo chgrp www-data dug.py
 sudo chmod 755 dug.py
 
-#Install supporting usermap and groupmap files
-sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/groupmap.py
-sudo chown www-data groupmap.py
-sudo chgrp www-data groupmap.py
-sudo chmod 755 groupmap.py
-
-sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/usermap.py
-sudo chown www-data usermap.py
-sudo chgrp www-data usermap.py
-sudo chmod 755 usermap.py
-
 #update cron to execute the script every minute
 cd /etc/cron.d
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/dug.cron
@@ -60,6 +49,7 @@ sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/keygen.cgi
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/vlan.cgi
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/usermap.cgi
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/groupmap.cgi
+sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/arp.cgi
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_BUG/master/menu.html
 sudo chown www-data *.*
 sudo chgrp www-data *.*
