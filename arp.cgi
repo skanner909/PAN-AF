@@ -16,7 +16,7 @@ print
 print """
 <html>
 <head>
-  <title>IP to User-ID Mappings</title>
+  <title>ARP Entries</title>
 
 <style>
 
@@ -84,7 +84,7 @@ li a:hover {
     <img src="/logo.svg" height="75px">
   </div>
   <div class="text">
-    IP to User-ID Mappings
+    ARP Entries
   </div>
 </div>
 """
@@ -95,23 +95,26 @@ for line in menu:
   print line
 
 print '<div class="response">'
-#Make call to firewall to get XML user-id information
-values = {'type': 'op', 'cmd': '<show><user><ip-user-mapping><all></all></ip-user-mapping></user></show>', 'key': fwkey}
+
+values = {'type': 'op', 'cmd': '<show><arp><entry name ="all"/></arp></show>', 'key': fwkey}
 palocall = 'https://%s/api/' % (fwhost)
 r = requests.post(palocall, data=values, verify=False)
+arptree = ET.fromstring(r.text)
+if (arptree.get('status') == "success"):
+  for entries in arptree.findall('./result/entries'):
+    print '<table cellpadding=5 cellspacing=0 border=1>'
+    print '<tr><td>IP</td><td>MAC</td><td>Status</td><td>TTL</td><td>Interface</td><td>Port</td></tr>'
+    for entry in entries.findall('entry'):
+      print "<tr>"
+      print "<td>%s</td>" % (entry.find('ip').text, )
+      print "<td>%s</td>" % (entry.find('mac').text, )
+      print "<td>%s</td>" % (entry.find('status').text, )
+      print "<td>%s</td>" % (entry.find('ttl').text, )
+      print "<td>%s</td>" % (entry.find('interface').text, )
+      print "<td>%s</td>" % (entry.find('port').text, )
+      print "</tr>"
+    print "</table>"
 
-#Convert the response from the firewall to an ElementTree to parse as XML
-tree = ET.fromstring(r.text)
-
-if (tree.get('status') == "success"):
-  print "<table cellpadding=5 cellspacing=0 border=1>"
-  print "<tr><td>IP</td><td>User</td></tr>"
-  for entry in tree.findall('./result/entry'):
-    print "<tr>"
-    print "<td>%s</td>" % (entry.find('ip').text, )
-    print "<td>%s</td>" % (entry.find('user').text, )
-    print "</tr>"
-  print "</table>"
 print "</div>"
 
 
