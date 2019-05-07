@@ -33,6 +33,12 @@ sudo chown www-data dug.py
 sudo chgrp www-data dug.py
 sudo chmod 755 dug.py
 
+#create the log file
+sudo touch dug.log
+sudo chown www-data dug.log
+sudo chgrp www-data dug.log
+sudo chmod 755 dug.log
+
 #update cron to execute the script every minute
 cd /etc/cron.d
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/dug.cron
