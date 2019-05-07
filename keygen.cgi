@@ -126,15 +126,12 @@ li a:hover {
     Dynamic User System
   </div>
 </div>
-
-<ul>
-  <li><a href="/cgi-bin/">Manage Devices</a></li>
-  <li><a href="/cgi-bin/usermap.cgi">User Mapping</a></li>
-  <li><a href="/cgi-bin/groupmap.cgi">Group Mapping</a></li>
-  <li><a href="/cgi-bin/keygen.cgi">Manage Firewall</a></li>
-  <li><a href="/cgi-bin/vlan.cgi">Add a VLAN</a></li>
-</ul>
 """
+
+#Print the menu
+menu = open("menu.html", "r")
+for line in menu:
+  print line
 
 form = cgi.FieldStorage()
 fwip = form.getvalue("fwip")
