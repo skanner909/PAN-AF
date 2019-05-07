@@ -50,6 +50,7 @@ sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/vlan.cgi
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/usermap.cgi
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/groupmap.cgi
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/arp.cgi
+sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/dhcp.cgi
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_BUG/master/menu.html
 sudo chown www-data *.*
 sudo chgrp www-data *.*
