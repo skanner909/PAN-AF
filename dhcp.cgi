@@ -45,11 +45,15 @@ r = requests.post(palocall, data=values, verify=False)
 
 dhcptree = ET.fromstring(r.text)
 print "<table cellpadding=5 cellspacing=0 border=1>"
-print "<tr><td>IP</td><td>MAC</td><td>State</td><td>Duration</td><td>Lease Time</td></tr>"
+print "<tr><td>IP</td><td>MAC</td><td>Hostname</td><td>State</td><td>Duration</td><td>Lease Time</td></tr>"
 for lease in dhcptree.findall('./result/interface/entry'):
   print "<tr>"
   print "<td>%s</td>" % (lease.find('ip').text, )
   print "<td>%s</td>" % (lease.find('mac').text, )
+  if lease.find('hostname') is not None:
+    print "<td>%s</td>" % (lease.find('hostname').text, )
+  else:
+    print "<td></td>"
   if lease.find('state') is not None:
     print "<td>%s</td>" % (lease.find('state').text, )
   else:
