@@ -64,18 +64,15 @@ sudo chown www-data *.*
 sudo chgrp www-data *.*
 sudo chmod 755 *.*
 
-#copy default web page
+#copy default web pages
 cd /var/www/html
 sudo rm index.html
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/index.html
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/dus.css
 sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/logo.svg
+sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/style.css
+sudo touch macs.txt
+sudo touch rsa.csv
 sudo chown www-data *.*
 sudo chgrp www-data *.*
 sudo chmod 755 *.*
-
-#create the file to hold the distinct list of MAC addresses seen on the firewall
-sudo touch macs.txt
-sudo chown www-data macs.txt
-sudo chgrp www-data macs.txt
-sudo chmod 755 macs.txt
