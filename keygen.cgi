@@ -15,107 +15,8 @@ print
 print """
 <html>
 <head>
-  <title>Manage Firewall Credentials</title>
-
-<style>
-
-.titleblock {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100px;
-    background-color: #e8ebeb;
-}
-
-.titleblock > .image {
-    position: absolute;
-    left: 15px;
-    top: 15px;
-    height: 100px;
-}
-
-.titleblock > .text {
-    position: absolute;
-    top: 40px;
-    left: 43%;
-    font:normal 30px "Nimbus Sans Cond", tahoma, helvetica, arial, sans-serif;
-}
-
-ul {
-    position: absolute;
-    top: 100px;
-    left: 0px;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 150px;
-    height: 100%;
-    background-color: #e8ebeb;
-}
-
-li a {
-    display: block;
-    color: #000;
-    padding: 8px 16px;
-    text-decoration: none;
-    font:normal 14px "Nimbus Sans Cond", tahoma, helvetica, arial, sans-serif;
-}
-
-li a:hover {
-    background-color: #306a89;
-    color: white;
-}
-
-.form1 {
-    position: absolute;
-    top: 125px;
-    left: 175px;
-    border-radius: 5px;
-    background-color: #e8ebeb;
-    padding: 5px;
-    width: 80%;
-}
-
-.form1 label {
-    font:normal 16px "Nimbus Sans Cond", tahoma, helvetica, arial, sans-serif;
-}
-
-.form1 input[type=text] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    font:normal 14px "Nimbus Sans Cond", tahoma, helvetica, arial, sans-serif;
-}
-
-.form1 input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    font:normal 14px "Nimbus Sans Cond", tahoma, helvetica, arial, sans-serif;
-}
-
-.form1 input[type=submit] {
-    font:normal 14px "Nimbus Sans Cond", tahoma, helvetica, arial, sans-serif;
-    background-color: #306a89;
-    border: none;
-    color: white;
-    width: 100%;
-    padding: 15px;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.response {
-    position: absolute;
-    top: 125px;
-    left: 175px;
-    font:normal 14px "Nimbus Sans Cond", tahoma, helvetica, arial, sans-serif;
-}
-
-</style>
+  <title>Generate Key</title>
+  <link rel="stylesheet" href="/style.css" type="text/css">
 </head>
 <body>
 <div class="titleblock">
@@ -123,7 +24,7 @@ li a:hover {
     <img src="/logo.svg" height="75px">
   </div>
   <div class="text">
-    Dynamic User System
+    Generate Key
   </div>
 </div>
 """

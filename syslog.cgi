@@ -9,7 +9,7 @@ print
 print """
 <html>
 <head>
-  <title>DUG Log</title>
+  <title>Syslog</title>
   <link rel="stylesheet" href="/style.css" type="text/css">
 </head>
 <body>
@@ -19,7 +19,7 @@ print """
     <img src="/logo.svg" height="75px">
   </div>
   <div class="text">
-    DUG Log
+    Syslog
   </div>
 </div>
 """
@@ -30,7 +30,7 @@ for line in menu:
   print line
 
 print '<div class="response"><pre>'
-log = open("/var/dug/dug.log", "r").readlines()
+log = open("/var/log/syslog", "r").readlines()
 for line in reversed(log):
   print line.strip()
 print "</pre></div>"
