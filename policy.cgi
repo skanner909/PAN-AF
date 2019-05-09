@@ -3,6 +3,8 @@
 import cgi
 import cgitb; cgitb.enable(format='text')  # for troubleshooting
 import requests
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 import xml.etree.ElementTree as ET
 import sys
 sys.path.insert(0, '/var/dug/')
