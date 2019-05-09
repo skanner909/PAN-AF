@@ -53,10 +53,39 @@ sudo wget -q ${REPO}arp.cgi
 sudo wget -q ${REPO}dhcp.cgi
 sudo wget -q ${REPO}policy.cgi
 sudo wget -q ${REPO}duglog.cgi
+sudo wget -q ${REPO}syslog.cgi
+sudo wget -q ${REPO}messageslog.cgi
+sudo wget -q ${REPO}accesslog.cgi
+sudo wget -q ${REPO}errorlog.cgi
 sudo wget -q ${REPO}menu.html
 sudo chown www-data *.*
 sudo chgrp www-data *.*
 sudo chmod 755 *.*
+
+#log permissions and rotation configuration
+sudo chmod 644 /var/log/syslog
+sudo chmod 644 /var/log/messages
+cd /etc
+sudo rm rsyslog.conf
+sudo wget -q ${REPO}rsyslog.conf
+sudo chown root rsyslog.conf
+sudo chgrp root rsyslog.conf
+sudo chmod 755 rsyslog.conf
+sudo rm logrotate.conf
+sudo wget -q ${REPO}logrotate.conf
+sudo chown root logrotate.conf
+sudo chgrp root logrotate.conf
+sudo chmod 755 logrotate.conf
+
+sudo chmod 755 /var/log/apache2
+sudo chmod 644 /var/log/apache2/access.log
+sudo chmod 644 /var/log/apache2/error.log
+cd /etc/logrotate.d
+sudo rm apache2
+sudo wget -q ${REPO}apache2
+sudo chown root apache2
+sudo chgrp root apache2
+sudo chmod 644 apache2
 
 #copy default web pages
 cd /var/www/html
