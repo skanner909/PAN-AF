@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#Tell the installer the root of the files to download
+REPO="https://raw.githubusercontent.com/p0lr/PAN_DUG/master/"
+
 #check to make sure Python is installed
 python --version
 
@@ -14,34 +17,25 @@ cd /var
 sudo mkdir dug
 sudo chown www-data dug
 sudo chgrp www-data dug
-
 cd /var/dug
-
 #create the devices database
 sudo touch create.sql
 sudo chmod 777 create.sql
 sudo echo 'CREATE TABLE DevicesDynamic (DeviceName "TEXT", DeviceMac "TEXT", Groups "Text");' > create.sql
 sudo sqlite3 devices.sql < create.sql
 sudo rm create.sql
-sudo chown www-data devices.sql
-sudo chgrp www-data devices.sql
-sudo chmod 755 devices.sql
-
 #install the code that updates the firewall
-sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/dug.py
-sudo chown www-data dug.py
-sudo chgrp www-data dug.py
-sudo chmod 755 dug.py
-
+sudo wget -q ${REPO}dug.py
 #create the log file
 sudo touch dug.log
-sudo chown www-data dug.log
-sudo chgrp www-data dug.log
-sudo chmod 755 dug.log
+#Set owner, group, and permissions of files in /var/dug
+sudo chown www-data *.*
+sudo chgrp www-data *.*
+sudo chmod 755 *.*
 
 #update cron to execute the script every minute
 cd /etc/cron.d
-sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/dug.cron
+sudo wget -q ${REPO}dug.cron
 
 #install apache2 and configure it to allow cgi
 sudo apt-get install apache2 -y
@@ -50,16 +44,16 @@ sudo service apache2 restart
 
 #copy cgi scripts into the cgi directory
 cd /usr/lib/cgi-bin
-sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/index.cgi
-sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/keygen.cgi
-sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/vlan.cgi
-sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/usermap.cgi
-sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/groupmap.cgi
-sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/arp.cgi
-sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/dhcp.cgi
-sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/policy.cgi
-sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/duglog.cgi
-sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_BUG/master/menu.html
+sudo wget -q ${REPO}index.cgi
+sudo wget -q ${REPO}keygen.cgi
+sudo wget -q ${REPO}vlan.cgi
+sudo wget -q ${REPO}usermap.cgi
+sudo wget -q ${REPO}groupmap.cgi
+sudo wget -q ${REPO}arp.cgi
+sudo wget -q ${REPO}dhcp.cgi
+sudo wget -q ${REPO}policy.cgi
+sudo wget -q ${REPO}duglog.cgi
+sudo wget -q ${REPO}menu.html
 sudo chown www-data *.*
 sudo chgrp www-data *.*
 sudo chmod 755 *.*
@@ -67,10 +61,9 @@ sudo chmod 755 *.*
 #copy default web pages
 cd /var/www/html
 sudo rm index.html
-sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/index.html
-sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/dus.css
-sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/logo.svg
-sudo wget -q https://raw.githubusercontent.com/p0lr/PAN_DUG/master/style.css
+sudo wget -q ${REPO}index.html
+sudo wget -q ${REPO}logo.svg
+sudo wget -q ${REPO}style.css
 sudo touch macs.txt
 sudo touch rsa.csv
 sudo chown www-data *.*
