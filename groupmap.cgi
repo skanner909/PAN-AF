@@ -38,7 +38,7 @@ menu = open("menu.html", "r")
 for line in menu:
   print line
 
-print '<div class="response"><pre>'
+print '<div class="response">'
 
 #Make call to firewall to get XML group mapping information
 values = {'type': 'op', 'cmd': '<show><user><user-ids><all/></user-ids></user></show>', 'key': fwkey}
@@ -49,9 +49,17 @@ r = requests.post(palocall, data=values, verify=False)
 tree = ET.fromstring(r.text)
 
 if (tree.get('status') == "success"):
-  print tree.find('result').text
+  result = tree.find('result').text
+  print "<table cellpadding=5 cellspacing=0 border=1>"
+  print "<tr><td>User</td><td>Group</td></tr>"
+  lines = result.split("\n")
+  for line in lines:
+    fields = line.split()
+    if (len(fields) > 2) and (fields[0] <> "User") and (fields[0] <> "*"):
+      print "<tr><td>%s</td><td>%s</td></tr>" % (fields[0], fields[2])
+  print "</table>"
 
-print "</pre></div>"
+print "</div>"
 
 
 print """
