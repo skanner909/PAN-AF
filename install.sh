@@ -57,6 +57,7 @@ sudo wget -q ${REPO}syslog.cgi
 sudo wget -q ${REPO}messageslog.cgi
 sudo wget -q ${REPO}accesslog.cgi
 sudo wget -q ${REPO}errorlog.cgi
+sudo wget -q ${REPO}manback.cgi
 sudo wget -q ${REPO}menu.html
 sudo chown www-data *.*
 sudo chgrp www-data *.*
