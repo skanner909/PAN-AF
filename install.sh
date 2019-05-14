@@ -49,6 +49,7 @@ sudo wget -q ${REPO}keygen.cgi
 sudo wget -q ${REPO}vlan.cgi
 sudo wget -q ${REPO}usermap.cgi
 sudo wget -q ${REPO}groupmap.cgi
+sudo wget -q ${REPO}clearusers.cgi
 sudo wget -q ${REPO}arp.cgi
 sudo wget -q ${REPO}dhcp.cgi
 sudo wget -q ${REPO}policy.cgi
