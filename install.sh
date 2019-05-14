@@ -35,7 +35,7 @@ sudo chmod 755 *.*
 
 #update cron to execute the script every minute
 cd /etc/cron.d
-sudo wget -q ${REPO}dug.cron
+sudo wget -q ${REPO}dugcron
 
 #install apache2 and configure it to allow cgi
 sudo apt-get install apache2 -y
