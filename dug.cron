@@ -1,2 +1,0 @@
-* * * * * www-data /var/dug/dug.py
-0 0 * * * www-data cp /var/dug/devices.sql /var/dug/devices.backup
