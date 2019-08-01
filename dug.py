@@ -42,11 +42,12 @@ def getArp(fwhost, fwkey):
   arptree = ET.fromstring(r.text)
   for entries in arptree.findall('./result/entries'):
     for entry in entries.findall('entry'):
-      info = {}
-      info['ip'] = entry.find('ip').text
-      info['mac'] = entry.find('mac').text
-      info['sysname'] = entry.find('mac').text
-      output.append(info)
+      if entry.find('mac').text <> "(incomplete)":
+        info = {}
+        info['ip'] = entry.find('ip').text
+        info['mac'] = entry.find('mac').text
+        info['sysname'] = entry.find('mac').text
+        output.append(info)
   return output
 
 def getDatabase(dbfile):
