@@ -100,3 +100,9 @@ sudo touch rsa.csv
 sudo chown www-data *.*
 sudo chgrp www-data *.*
 sudo chmod 755 *.*
+
+#harden the Raspberry Pi
+sudo systemctl disable avahi-daemon
+sudo systemctl stop avahi-daemon
+sudo systemctl disable triggerhappy
+sudo systemctl stop triggerhappy
