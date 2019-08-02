@@ -95,6 +95,7 @@ sudo rm index.html
 sudo wget -q ${REPO}index.html
 sudo wget -q ${REPO}logo.svg
 sudo wget -q ${REPO}style.css
+sudo wget -q ${REPO}favicon.ico
 sudo touch macs.txt
 sudo touch rsa.csv
 sudo chown www-data *.*
