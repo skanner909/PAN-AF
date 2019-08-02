@@ -93,7 +93,7 @@ def fwFormat(hostdata):
   fwxml += '\t<payload>\n'
   fwxml += '\t\t<login>\n'
   for entry in hostdata:
-    fwxml += '\t\t\t<entry name="%s" ip="%s" timeout="0"/>\n' % (entry['sysname'], entry['ip'])
+    fwxml += '\t\t\t<entry name="%s" ip="%s" timeout="30"/>\n' % (entry['sysname'], entry['ip'])
   fwxml += '\t\t</login>\n'
   fwxml = fwxml + '\t\t<groups>\n'
   groups = []
