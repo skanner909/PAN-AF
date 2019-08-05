@@ -102,6 +102,16 @@ sudo chown www-data *.*
 sudo chgrp www-data *.*
 sudo chmod 755 *.*
 
+cd /var
+sudo mkdir backup
+sudo chown www-data backup
+sudo chgrp www-data backup
+cd /var/backup
+sudo wget -q ${REPO}autoback.py
+sudo chown www-data *.*
+sudo chgrp www-data *.*
+sudo chmod 755 *.*
+
 #harden the Raspberry Pi
 sudo systemctl disable avahi-daemon
 sudo systemctl stop avahi-daemon
