@@ -52,6 +52,7 @@ sudo wget -q ${REPO}groupmap.cgi
 sudo wget -q ${REPO}clearusers.cgi
 sudo wget -q ${REPO}arp.cgi
 sudo wget -q ${REPO}dhcp.cgi
+sudo wget -q ${REPO}dhcputil.cgi
 sudo wget -q ${REPO}policy.cgi
 sudo wget -q ${REPO}duglog.cgi
 sudo wget -q ${REPO}syslog.cgi
