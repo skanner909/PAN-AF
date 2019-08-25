@@ -20,8 +20,8 @@ stamp = "%s-%s-%s-%s-%s-%s" % (now.year, now.month, now.day, now.hour, now.minut
 import os.path
 
 def lastBack():
-  if (os.path.isfile("/var/backup/lastback.txt")):
-    file = open("/var/backup/lastback.txt", "r")
+  if (os.path.isfile("/var/autoback/lastback.txt")):
+    file = open("/var/autoback/lastback.txt", "r")
     lastpcap = file.read()
     file.close()
     return lastpcap
@@ -53,12 +53,12 @@ if lastback:
   currentconfig = getConfig(fwhost, fwkey)
   if(previousconfig and currentconfig):
     if previousconfig != currentconfig:
-      filename = "/var/backup/%s.xml" % (stamp, )
+      filename = "/var/autoback/%s.xml" % (stamp, )
       file = open(filename, "w")
       file.write(currentconfig)
       file.close()
 
-      file = open("/var/backup/lastback.txt", "w")
+      file = open("/var/autoback/lastback.txt", "w")
       file.write(filename)
       file.close()
 
@@ -70,11 +70,11 @@ if lastback:
 
 else:
   runningconfig = getConfig(fwhost, fwkey)
-  filename = "/var/backup/%s.xml" % (stamp, )
+  filename = "/var/autoback/%s.xml" % (stamp, )
   file = open(filename, "w")
   file.write(runningconfig)
   file.close()
 
-  file = open("/var/backup/lastback.txt", "w")
+  file = open("/var/autoback/lastback.txt", "w")
   file.write(filename)
   file.close()
