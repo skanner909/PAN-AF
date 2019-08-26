@@ -28,7 +28,7 @@ Browse to http://<ip>
 Click on the Palo Alto Networks logo
 Click on "Manage Firewall" in the navigation menu
 Enter the firewall IP address or hostname, username, and password for an account that has the proper permissions
-Click on "Manage Devices" in the navigation menu
+Click on "Generate Key" in the navigation menu
 Add your devices
 ```
 
