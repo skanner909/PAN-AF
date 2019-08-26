@@ -115,7 +115,7 @@ cd /var
 sudo mkdir autoback
 sudo chown www-data autoback
 sudo chgrp www-data autoback
-cd /var/backup
+cd /var/autoback
 sudo wget -q ${REPO}autoback.py
 sudo chown www-data *.*
 sudo chgrp www-data *.*
