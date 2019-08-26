@@ -12,6 +12,9 @@ sudo apt-get install python-requests -y
 #install sqlite3
 sudo apt-get install sqlite3 -y
 
+#install xmldiff
+sudo pip install xmldiff
+
 #create the directory for the primary dug code to live
 cd /var
 sudo mkdir dug
@@ -61,6 +64,7 @@ sudo wget -q ${REPO}accesslog.cgi
 sudo wget -q ${REPO}errorlog.cgi
 sudo wget -q ${REPO}manback.cgi
 sudo wget -q ${REPO}software.cgi
+sudo wget -q ${REPO}changes.cgi
 sudo wget -q ${REPO}menu.html
 sudo chown www-data *.*
 sudo chgrp www-data *.*
