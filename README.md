@@ -2,7 +2,7 @@
 
 This project is an automation framework for Palo Alto Networks firewalls.  Instead of creating the same components for each new project (credential generation/storage, web framework, etc...), I opted to put my automation efforts into this framework.
 
-### Dynamin User Groups for Palo Alto Networks devices
+### Dynamic User Groups for Palo Alto Networks devices
 
 This package does quite a lot around dynamic user and dynamic group registration.  The idea is to give you something consistent to correlate activity around as IP addresses change in a dynamic network.  If you know more information about the device, you may add it in the database using the web interface.  Otherwise, the code generates a user-id based on mac info and hostname if it is provided when requesting a DHCP lease.
 
