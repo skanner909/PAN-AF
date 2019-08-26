@@ -12,6 +12,9 @@ sudo apt-get install python-requests -y
 #install sqlite3
 sudo apt-get install sqlite3 -y
 
+#install python-pip
+sudo apt-get install python-pip -y
+
 #install xmldiff
 sudo pip install xmldiff
 
